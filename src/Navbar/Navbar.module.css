@@ -1,0 +1,42 @@
+:root {
+  --white: #fff;
+  --black: #000;
+  --blue: #2d3355;
+}
+nav {
+  position: relative;
+  margin-left: auto;
+  width: 100vw;
+  background-color: var(--blue);
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+  padding: 0 20px;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+.links {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--white);
+}
+
+.link {
+  text-decoration: none;
+  color: var(--white);
+}
+
+.login {
+}

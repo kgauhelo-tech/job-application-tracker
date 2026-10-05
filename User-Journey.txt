@@ -1,0 +1,40 @@
+Step By Step Instruction
+
+1. The user visits the site and see the landing page
+
+2. The hero section should have a primary CTA button that leads to the login page
+
+3. On the login page, the user will have the option to login with their credentials OR 
+to register if they don't have an account
+
+4. If the users chooses to register, they will be directed to the registration page
+
+5. The user will have the option to register using a username AND password
+
+6. After the user clicks on the register, their input will be validated AND
+if the input is valid, they will be:
+    registered,
+    given a success notification
+    logged in
+    and given a successful login message
+    directed to the first home page, which will show the empty state
+
+if the input is not valid, the will be given a message indicating as such AND allowed to make corrections
+
+7. The user will see the empty state of the application and a button for adding and application record
+
+8. When the user clicks on the new application button, they will be taken to a screen for adding a new application
+    a. In the new application screen, the user should be able to add job application details, or cancel the action
+    b. if adding is successful
+        i.  a success message will be displayed, the the form will be reset
+        ii.  the will be redirected back to the home page OR remain in the same screen allowing to add another entry
+        
+        !!! Which is better???
+
+      if adding wasn't successful
+        i. a message will be displayed
+        ii. the user will be allowed to make corrections
+
+9. WHen the user is back in the home page, they will see the entry they just made and should be able to perform CRUD operations
+
+10. The user can choose to logout of the application
