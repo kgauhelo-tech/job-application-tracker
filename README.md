@@ -1,75 +1,27 @@
-# React + TypeScript + Vite
+# Task: Job Tracker application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A job tracker application that stores a user's application records.
 
-Currently, two official plugins are available:
+## Task III
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+### Deliverables:
 
-## React Compiler
+- Design file
+- Step by step planning
+- Pseudo code
+- Design Implementation
+- Algorithm
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Functional requirements
 
-## Expanding the ESLint configuration
+- Adding, deleting, editing, viewing records
+- Searching items by company or role
+- Use of status colors for differentiation
+- Filtering application records by status
+- Sorting application records by date
+- Use of JSON server for data persistence
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Planning the application
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
-```
-
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
-```
+- Pseudo code: https://github.com/kgauhelo-tech/job-application-tracker/tree/pseudocode
+- Figma Design Link: https://www.figma.com/design/OxRmsqgqXd8eeYTTogsnn0/Chess-Trainer?node-id=206-923&t=c3Bn6FxUHf7L70OF-1
