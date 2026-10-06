@@ -1,0 +1,90 @@
+PROGRAM MyRecordsApp
+
+TYPE User:
+  id: STRING
+  username: STRING
+  password: STRING
+  records: OBJECT
+
+GLOBAL currentUser: User = NULL
+
+// --- AUTH ---
+FUNCTION login(username, password):
+  FETCH all users from "/users"
+  FIND user WHERE user.username == username AND user.password == password
+
+  IF found:
+    SET currentUser = found
+    SAVE currentUser to localStorage
+    RETURN TRUE
+  ELSE:
+    RETURN FALSE
+
+FUNCTION logout():
+  SET currentUser = NULL
+  REMOVE currentUser from localStorage
+
+FUNCTION isLoggedIn():
+  IF currentUser == NULL:
+    RETURN FALSE
+  ELSE:
+    RETURN TRUE
+
+FUNCTION register(username, password):
+  existing = FETCH "/users?username={username}"
+  IF existing NOT EMPTY:
+    RETURN FALSE
+
+  newUser = CREATE User(id=random, username, password, records={})
+  POST newUser to "/users"
+  SET currentUser = newUser
+  RETURN TRUE
+
+// --- RECORDS ---
+FUNCTION getRecords():
+  IF NOT isLoggedIn():
+    SHOW "Please login"
+    RETURN
+
+  RETURN currentUser.records
+
+FUNCTION updateRecords(newRecords):
+  IF NOT isLoggedIn():
+    RETURN
+
+  // Your idea: get -> change -> put back
+  freshUser = FETCH "/users/{currentUser.id}"
+  updatedUser = freshUser
+  updatedUser.records = newRecords
+
+  PUT updatedUser to "/users/{currentUser.id}"
+
+  SET currentUser = updatedUser
+  SAVE currentUser to localStorage
+
+FUNCTION addRecord(key, value):
+  currentRecords = getRecords()
+  currentRecords[key] = value
+  CALL updateRecords(currentRecords)
+
+// --- APP FLOW ---
+IF isLoggedIn():
+  SHOW Home WITH getRecords()
+ELSE:
+  SHOW LoginPage
+
+On RegisterButton click:
+    If register(username, password)
+        GO TO LoginPage
+    ELSE SHOW "Try Again"
+
+ON LoginButton Click:
+  IF login(inputUsername, inputPassword):
+    GO TO Dashboard
+  ELSE:
+    SHOW "Wrong details"
+
+ON AddButton Click:
+  CALL addRecord(inputKey, inputValue)
+  REFRESH Dashboard
+END
