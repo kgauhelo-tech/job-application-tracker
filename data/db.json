@@ -7,20 +7,12 @@
       "password": "**********",
       "records": [
         {
-          "id": 1,
-          "company": "Vibr Tech",
-          "role": "Software Engineer",
-          "status": "Applied",
-          "dateApplied": "12/12/2024",
-          "duties": ""
-        },
-        {
+          "id": 1791304826749,
           "role": "Data Engineer",
-          "company": "Vibe Tech",
-          "status": "Interviewed",
+          "company": "Vibr Tech",
+          "status": "Applied",
           "dateApplied": "2026-10-06",
-          "duties": "",
-          "id": 1791304826749
+          "duties": ""
         }
       ]
     },

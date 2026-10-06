@@ -10,6 +10,9 @@ import ProtectedRoute from "./Pages/ProtectedRoute";
 import Logout from "./Pages/Auth/Logout";
 import Notification from "./components/Notification";
 import HomePage from "./Pages/Home";
+import ApplicationDetailsPage from "./Pages/Functions/RecordDetails";
+import EditRecordPage from "./Pages/Functions/EditRecord";
+import CreateRecordPage from "./Pages/Functions/AddRecord";
 
 function App() {
   return (
@@ -35,6 +38,38 @@ function App() {
             element={
               <ProtectedRoute>
                 <Logout />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/home"
+            element={
+              <ProtectedRoute>
+                <HomePage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/applications/new"
+            element={
+              <ProtectedRoute>
+                <CreateRecordPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/applications/:id"
+            element={
+              <ProtectedRoute>
+                <ApplicationDetailsPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/applications/:id/edit"
+            element={
+              <ProtectedRoute>
+                <EditRecordPage />
               </ProtectedRoute>
             }
           />
