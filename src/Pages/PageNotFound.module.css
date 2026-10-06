@@ -1,0 +1,46 @@
+:root {
+  --white: #fff;
+  --black: #000;
+  --blue: #2d3355;
+}
+
+.page_container {
+  padding: 2rem;
+  background-color: var(--blue);
+  height: calc(100vh - 19vh);
+}
+
+.cont {
+  max-width: 1200px;
+  height: 100%;
+  margin: auto auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.text_cont {
+  text-align: center;
+  color: var(--white);
+}
+
+.icon_cont {
+  opacity: 0.8;
+}
+
+button {
+  padding: 10px 20px;
+  color: var(--blue);
+  background-color: var(--white);
+  border-radius: 16px;
+  transition: all ease-in-out 0.2s;
+  border: none;
+}
+button:hover {
+  color: var(--white);
+  background-color: var(--blue);
+  border: 1px solid var(--white);
+  font-weight: bold;
+}

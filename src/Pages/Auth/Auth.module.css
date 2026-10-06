@@ -1,0 +1,50 @@
+:root {
+  --white: #fff;
+  --black: #000;
+  --blue: #2d3355;
+}
+
+.container {
+  background-color: var(--white);
+  max-width: 1200px;
+  margin: 4rem auto;
+}
+
+.input_elements {
+  margin: 0 auto;
+
+  background-image: linear-gradient(var(--blue), #6370bb);
+  max-height: 70vh;
+  width: 30vw;
+  padding: 2rem;
+  color: var(--white);
+
+  border-radius: 16px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+button {
+  margin-bottom: 1rem;
+}
+
+.nav_link {
+  text-decoration: none;
+  color: var(--blue);
+  background-color: var(--white);
+  padding: 6px 10px;
+  border-radius: 8px;
+  transition: all ease-in-out 0.3s;
+}
+
+.nav_link:hover {
+  opacity: 0.8;
+}
