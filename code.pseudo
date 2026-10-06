@@ -1,5 +1,3 @@
-PROGRAM MyRecordsApp
-
 TYPE User:
   id: STRING
   username: STRING
