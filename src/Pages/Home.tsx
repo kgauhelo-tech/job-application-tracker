@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 import styles from "./Home.module.css";
 import Text from "../components/Text";
 import { UserContext, type RecordItem } from "../Pages/Auth/UserContext";
-import { Edit, Target, Trash, Trash2, Trash3 } from "reicon-react";
+import { Edit, Target, Trash3 } from "reicon-react";
 
 const HomePage = () => {
   const { getRecords, deleteRecord } = useContext(UserContext);
@@ -48,11 +48,6 @@ const HomePage = () => {
         return sortOrder === "asc" ? dateA - dateB : dateB - dateA;
       });
   }, [records, searchTerm, selectedStatus, sortOrder]);
-
-  const getStatusClass = (status: string) => {
-    const normalized = status.toLowerCase();
-    return styles[normalized] || styles.default_badge;
-  };
 
   return (
     <div className={styles.home_cont}>
