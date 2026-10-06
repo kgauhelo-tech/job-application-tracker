@@ -1,8 +1,9 @@
 import { createContext, useState, type ReactNode } from "react";
 
+const API_URL = "https://6ac55f2754a61668c5f725a7.mockapi.io/api/test/users";
+
 export type User = {
   id: string;
-  userID: number;
   username: string;
   password: string;
   records: RecordItem[];
@@ -54,25 +55,29 @@ export function UserProvider({ children }: { children: ReactNode }) {
   const clearMessage = () => setMessage(null);
 
   const login = async (username: string, password: string) => {
-    const res = await fetch("http://localhost:3000/users");
-    const data = await res.json();
+    try {
+      const res = await fetch(`${API_URL}?username=${username}`);
+      const data = await res.json();
 
-    // Safely extract the array whether server returns [...] or { users: [...] }
-    const users: User[] = Array.isArray(data) ? data : data.users || [];
+      const users: User[] = Array.isArray(data) ? data : [];
+      const found = users.find(
+        (user) => user.username === username && user.password === password,
+      );
 
-    const found = users.find(
-      (user) => user.username === username && user.password === password,
-    );
+      if (found) {
+        setCurrentUser(found);
+        localStorage.setItem("currentUser", JSON.stringify(found));
+        showMessage("Logged in successfully!");
+        return true;
+      }
 
-    if (found) {
-      setCurrentUser(found);
-      localStorage.setItem("currentUser", JSON.stringify(found));
-      showMessage("Logged in successfully!");
-      return true;
+      showMessage("Couldn't log in. Please try again.");
+      return false;
+    } catch (err) {
+      console.error("Login failed:", err);
+      showMessage("Error connecting to server.");
+      return false;
     }
-
-    showMessage("Couldn't log in. Please try again.");
-    return false;
   };
 
   const logout = () => {
@@ -82,40 +87,40 @@ export function UserProvider({ children }: { children: ReactNode }) {
   };
 
   const register = async (username: string, password: string) => {
-    const res = await fetch(`http://localhost:3000/users?username=${username}`);
-    const data = await res.json();
+    try {
+      const res = await fetch(`${API_URL}?username=${username}`);
+      const data = await res.json();
 
-    // Handle array or wrapped object response for query filtering
-    const existing = Array.isArray(data) ? data : data.users || [];
+      const existing = Array.isArray(data) ? data : [];
 
-    if (existing.length > 0) {
-      showMessage("Username already taken. Please try another.");
+      if (existing.length > 0) {
+        showMessage("Username already taken. Please try another.");
+        return false;
+      }
+
+      // Pass user object without 'id' so MockAPI automatically generates it
+      const newUser = {
+        username,
+        password,
+        records: [],
+      };
+
+      await fetch(API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newUser),
+      });
+
+      showMessage("Account registered successfully!");
+      return true;
+    } catch (err) {
+      console.error("Registration failed:", err);
+      showMessage("Error connecting to server.");
       return false;
     }
-
-    const userId = Date.now();
-
-    const newUser: User = {
-      id: String(userId),
-      userID: userId,
-      username,
-      password,
-      records: [],
-    };
-
-    await fetch("http://localhost:3000/users", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(newUser),
-    });
-
-    showMessage("Account registered successfully!");
-    return true;
   };
 
-  const isLoggedIn = () => {
-    return !!currentUser;
-  };
+  const isLoggedIn = () => !!currentUser;
 
   const addRecord = async (newRecordData: Omit<RecordItem, "id">) => {
     if (!currentUser) return false;
@@ -131,7 +136,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
     };
 
     try {
-      await fetch(`http://localhost:3000/users/${currentUser.id}`, {
+      await fetch(`${API_URL}/${currentUser.id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(updatedUser),
@@ -159,7 +164,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
     };
 
     try {
-      await fetch(`http://localhost:3000/users/${currentUser.id}`, {
+      await fetch(`${API_URL}/${currentUser.id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(updatedUser),
@@ -185,7 +190,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
     };
 
     try {
-      await fetch(`http://localhost:3000/users/${currentUser.id}`, {
+      await fetch(`${API_URL}/${currentUser.id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(updatedUser),
