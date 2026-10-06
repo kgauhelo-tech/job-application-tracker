@@ -1,46 +1,67 @@
-// import React from "react";
+import { useRef, useState, useContext } from "react";
+import { UserContext } from "../Pages/Auth/UserContext";
 
-// import { NavLink } from "react-router";
+import { NavLink } from "react-router";
 
 import styles from "./Navbar.module.css";
+import Text from "../components/Text";
+import { Menu } from "reicon-react";
 
 const Navbar = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(true);
+  const menuRef = useRef<HTMLDivElement>(null);
+
+  function handleClick() {
+    isMenuOpen ? setIsMenuOpen(false) : setIsMenuOpen(true);
+    isMenuOpen
+      ? (menuRef.current!.className = `${styles.hidden_links}`)
+      : (menuRef.current!.className = `${styles.hidden_links} ${styles.hidden}`);
+
+    if (isMenuOpen) console.log(isMenuOpen);
+    console.log(menuRef.current?.className);
+  }
+
   return (
     <nav>
       <div className={styles["nav-container"]}>
         <div className={styles.logo}>Track-it</div>
         <div className={styles.links}>
-          {/* <NavLink className={styles.link} to="/about">
-            About
+          <NavLink className={styles.link} to="/">
+            <Text variant={"p"}>About</Text>
           </NavLink>
           <NavLink className={styles.link} to="/home">
-            Home
+            <Text variant={"p"}>Home</Text>
           </NavLink>
           <NavLink className={styles.link} to="/logout">
-            Logout
+            <Text variant={"p"}>Logout</Text>
           </NavLink>
           <NavLink className={styles.link} to="/register">
-            Register
+            <Text variant={"p"}>Register</Text>
           </NavLink>
-          <NavLink className={styles.link} to="/login">
-            Login
-          </NavLink> */}
-          <a className={styles.link} href="">
-            About
-          </a>
-          <a className={styles.link} href="">
-            Home
-          </a>
-          <a className={styles.link} href="">
-            Register
-          </a>
-          <a className={styles.link} href="">
-            Logout
-          </a>
-          <a className={styles["link login"]} href="">
-            Login
-          </a>
+          <NavLink className={`${styles.link} ${styles.login}`} to="/login">
+            <Text variant={"p"}>Login</Text>
+          </NavLink>
         </div>
+        <div className={`${styles.menu}`}>
+          <Menu color="white" size={40} onClick={handleClick} />
+        </div>
+      </div>
+      <div ref={menuRef} className={`${styles.hidden_links} ${styles.hidden}`}>
+        <NavLink className={styles.link} to="/">
+          <Text variant={"p"}>About</Text>
+        </NavLink>
+        <NavLink className={styles.link} to="/home">
+          <Text variant={"p"}>Home</Text>
+        </NavLink>
+        <NavLink className={styles.link} to="/logout">
+          <Text variant={"p"}>Logout</Text>
+        </NavLink>
+        <NavLink className={styles.link} to="/register">
+          <Text variant={"p"}>Register</Text>
+        </NavLink>
+        <NavLink className={`${styles.link} ${styles.login}`} to="/login">
+          <Text variant={"p"}>Login</Text>
+        </NavLink>
       </div>
     </nav>
   );

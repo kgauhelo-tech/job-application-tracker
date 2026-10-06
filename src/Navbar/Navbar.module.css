@@ -3,11 +3,13 @@
   --black: #000;
   --blue: #2d3355;
 }
+
 nav {
   position: relative;
   margin-left: auto;
-  width: 100vw;
+  width: 100%;
   background-color: var(--blue);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .nav-container {
@@ -36,7 +38,82 @@ nav {
 .link {
   text-decoration: none;
   color: var(--white);
+  cursor: pointer;
+  transition: all ease-in-out 0.2s;
+}
+
+.link:hover {
+  opacity: 0.8;
+  padding: 0;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #fff;
+}
+
+.active {
+  padding: 0 10px 5px 10px;
+  border-bottom: 1px solid #fff;
+}
+.active:hover {
+  opacity: 0.9;
+  padding: 0 10px 5px 10px;
+  border-bottom: 1px solid #fff;
 }
 
 .login {
+  font-weight: bold;
+
+  color: var(--blue);
+  background-color: var(--white);
+
+  padding: 6px 12px;
+  border-radius: 12px;
+}
+
+.login:hover {
+  opacity: 1;
+  color: var(--white);
+  border: 1px solid var(--white);
+  padding: 8px 14px;
+  border-radius: 12px;
+  background-color: var(--blue);
+}
+
+.menu {
+  display: none;
+}
+
+.hidden_links {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .links {
+    display: none;
+  }
+  .menu {
+    display: flex;
+  }
+  .hidden_links {
+    background-color: var(--blue);
+    padding: 10px 6px;
+    /* border-radius: 12px; */
+    border-bottom-left-radius: 12px;
+    position: absolute;
+    right: 0;
+
+    width: 35vw;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .hidden {
+    display: none;
+  }
+}
+
+@media (min-width: 768px) {
+  .hidden_links {
+    display: none;
+  }
 }

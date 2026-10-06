@@ -1,9 +1,13 @@
+import { useNavigate } from "react-router";
 import Text from "../components/Text";
 import Styles from "./PageNotFound.module.css";
 import { AlertTriangle } from "reicon-react";
 
 const PageNotFound = () => {
-  function handleNavigateBack() {}
+  const navigate = useNavigate();
+  function handleNavigateBack() {
+    navigate("/");
+  }
   return (
     <div className={Styles.page_container}>
       <div className={Styles.cont}>

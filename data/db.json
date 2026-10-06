@@ -1,44 +1,45 @@
 {
   "users": [
     {
-      "userId": 1,
+      "id": "1",
+      "userID": 1,
       "username": "kuroChin",
       "password": "**********",
-      "userRecords": [
+      "records": [
         {
-          "recordId": 1,
-          "company-name": "Vibr Tech",
+          "id": 1,
+          "company": "Vibr Tech",
           "role": "Software Engineer",
           "status": "Applied",
-          "Date_applied": "12/12/2024",
-          "job_duties": ""
+          "dateApplied": "12/12/2024",
+          "duties": ""
         },
         {
-          "recordId": 2,
-          "company-name": "Vibr Tech",
-          "role": "Software Engineer",
-          "status": "Applied",
-          "Date_applied": "12/12/2024",
-          "job_duties": ""
+          "role": "Data Engineer",
+          "company": "Vibe Tech",
+          "status": "Interviewed",
+          "dateApplied": "2026-10-06",
+          "duties": "",
+          "id": 1791304826749
         }
       ]
     },
     {
-      "userId": 2,
+      "id": "2",
+      "userID": 2,
       "username": "kuroKyun",
       "password": "**********",
-      "userRecords": [
+      "records": [
         {
-          "record": {
-            "recordId": 1,
-            "company-name": "Vibr Tech",
-            "role": "Software Engineer",
-            "status": "Applied",
-            "Date_applied": "12/12/2024",
-            "job_duties": ""
-          }
+          "id": 1,
+          "company": "Vibr Tech",
+          "role": "Software Engineer",
+          "status": "Applied",
+          "dateApplied": "12/12/2024",
+          "duties": ""
         }
       ]
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }

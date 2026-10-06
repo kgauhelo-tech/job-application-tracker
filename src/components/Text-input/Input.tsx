@@ -7,6 +7,8 @@ type Props = {
   elementId: string;
   label: string;
   inputType: string;
+  value?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 const InputComponent: React.FC<Props> = ({
@@ -14,16 +16,22 @@ const InputComponent: React.FC<Props> = ({
   elementId,
   label,
   inputType,
+  value,
+  onChange,
 }) => {
   return (
-    <>
-      <div className={styles.input}>
-        <label htmlFor={elementId}>
-          <Text variant="p">{label}</Text>
-        </label>
-        <input id={elementId} type={inputType} placeholder={placeholder} />
-      </div>
-    </>
+    <div className={styles.input}>
+      <label htmlFor={elementId}>
+        <Text variant="p">{label}</Text>
+      </label>
+      <input
+        id={elementId}
+        type={inputType}
+        placeholder={placeholder}
+        value={value ?? ""}
+        onChange={onChange}
+      />
+    </div>
   );
 };
 

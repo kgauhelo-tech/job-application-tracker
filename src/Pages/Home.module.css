@@ -1,3 +1,70 @@
-.home-cont {
+:root {
+  --white: #fff;
+  --black: #000;
+  --blue: #2d3355;
+}
+
+.home_cont {
   max-width: 1200px;
+  margin: auto auto;
+  padding: 1.5rem;
+}
+
+.stats_banner {
+  color: var(--white);
+  background-image: linear-gradient(to right, var(--blue), #6370bb);
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 2rem;
+
+  height: 80px;
+  width: 1000px;
+  padding: 2rem;
+  border-radius: 16px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+}
+
+.stat_item {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.applications_header {
+  padding: 1rem 0;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.controls_group {
+  height: 40%;
+  display: flex;
+  gap: 10px;
+
+  margin-left: auto;
+  @media (max-width: 768px) {
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+}
+
+.search_input {
+  border: 1px solid var(--blue);
+  padding: 0.2rem 0.5rem;
+}
+
+.applications_header select {
+  background-color: var(--blue);
+  color: white;
+  padding: 0 2px;
+}
+
+.records_cont {
+  height: 300px;
+  overflow-y: scroll;
 }

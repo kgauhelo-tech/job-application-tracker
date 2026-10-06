@@ -7,23 +7,23 @@
 .container {
   background-color: var(--white);
   max-width: 1200px;
+  width: 90%;
   margin: 4rem auto;
+  padding: 0 1rem;
 }
 
 .input_elements {
   margin: 0 auto;
-
   background-image: linear-gradient(var(--blue), #6370bb);
-  max-height: 70vh;
-  width: 30vw;
+  width: 100%;
+  max-width: 420px; /* Fixed maximum size instead of view-width scaling */
   padding: 2rem;
   color: var(--white);
-
   border-radius: 16px;
-
   display: flex;
   flex-direction: column;
-  gap: 3rem;
+  gap: 1.5rem;
+  box-sizing: border-box;
 }
 
 .btn {
@@ -32,8 +32,10 @@
   align-items: center;
 }
 
-button {
-  margin-bottom: 1rem;
+.btn_cont {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
 .nav_link {
@@ -42,9 +44,21 @@ button {
   background-color: var(--white);
   padding: 6px 10px;
   border-radius: 8px;
-  transition: all ease-in-out 0.3s;
+  transition: opacity 0.3s ease-in-out;
 }
 
 .nav_link:hover {
   opacity: 0.8;
+}
+
+.cancel_btn {
+  color: var(--white);
+  background-color: var(--blue);
+  border: 1px solid var(--white);
+}
+
+@media (max-width: 480px) {
+  .input_elements {
+    padding: 1.5rem 1rem;
+  }
 }
