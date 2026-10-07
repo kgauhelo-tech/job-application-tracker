@@ -168,3 +168,121 @@ td {
   color: #616161;
   border: 1px solid #e0e0e0;
 }
+
+.mobile_records {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .home_cont {
+    width: 100%;
+    padding: 1rem;
+    overflow: hidden;
+  }
+
+  .stats_banner {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    height: auto;
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    overflow: hidden;
+  }
+
+  .stat_item {
+    gap: 0.25rem;
+  }
+
+  .applications_header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+  }
+
+  .controls_group {
+    width: 100%;
+    height: auto;
+    margin-left: 0;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .search_input,
+  .filter_select,
+  .sort_btn,
+  .new_app_btn {
+    min-height: 40px;
+  }
+
+  .records_cont {
+    height: auto;
+    max-height: none;
+    overflow: visible;
+    box-shadow: none;
+  }
+
+  .table {
+    display: none;
+  }
+
+  .mobile_records {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .application_card {
+    padding: 1rem;
+    border-radius: 12px;
+    box-shadow: 2px 2px 8px 0 var(--black);
+    cursor: pointer;
+  }
+
+  .card_main {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .card_role {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    min-width: 0;
+  }
+
+  .card_role > div {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  .card_role strong {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .card_role span:not(.target_icon) {
+    color: #616161;
+    font-size: 0.9rem;
+  }
+
+  .card_bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid #ddd;
+    font-size: 0.9rem;
+  }
+
+  .card_bottom .actions_cell {
+    display: flex;
+    gap: 6px;
+  }
+}

@@ -60,6 +60,7 @@ const HomePage = () => {
             <Text variant="h1">{totalApplications}</Text>
           </span>
         </div>
+
         <div className={styles.stat_item}>
           <Text variant="p">
             <strong>Interviews</strong>
@@ -68,6 +69,7 @@ const HomePage = () => {
             <Text variant="h1">{interviewsCount}</Text>
           </span>
         </div>
+
         <div className={styles.stat_item}>
           <Text variant="p">
             <strong>Offers</strong>
@@ -76,6 +78,7 @@ const HomePage = () => {
             <Text variant="h1">{offerCount}</Text>
           </span>
         </div>
+
         <div className={styles.stat_item}>
           <Text variant="p">
             <strong>Rejected</strong>
@@ -92,7 +95,7 @@ const HomePage = () => {
         <div className={styles.controls_group}>
           <input
             type="text"
-            placeholder="Search role or company..."
+            placeholder="Search"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className={styles.search_input}
@@ -132,33 +135,95 @@ const HomePage = () => {
         {filteredRecords.length === 0 ? (
           <Text variant="p">No job applications match your filters.</Text>
         ) : (
-          <table className={styles.table}>
-            <thead>
-              <tr>
-                <th>Role</th>
-                <th>Company</th>
-                <th>Date Applied</th>
-                <th>Status</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
+          <>
+            {/* Desktop */}
+            <table className={styles.table}>
+              <thead>
+                <tr>
+                  <th>Role</th>
+                  <th>Company</th>
+                  <th>Date Applied</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                {filteredRecords.map((record: RecordItem) => (
+                  <tr
+                    key={record.id}
+                    onClick={() => navigate(`/applications/${record.id}`)}
+                    className={styles.clickable_row}
+                  >
+                    <td className={styles.role_cell}>
+                      <span className={styles.target_icon}>
+                        <Target />
+                      </span>
+                      <span className={styles.role_title}>{record.role}</span>
+                    </td>
+
+                    <td>{record.company}</td>
+                    <td>{record.dateApplied || "N/A"}</td>
+
+                    <td>
+                      <span
+                        className={`${styles.status_badge} ${
+                          styles[record.status.toLowerCase()] ||
+                          styles.default_badge
+                        }`}
+                      >
+                        {record.status}
+                      </span>
+                    </td>
+
+                    <td className={styles.actions_cell}>
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          navigate(`/applications/${record.id}/edit`);
+                        }}
+                        className={styles.edit_btn}
+                      >
+                        <Edit />
+                      </button>
+
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          deleteRecord(record.id);
+                        }}
+                        className={styles.delete_btn}
+                      >
+                        <Trash3 />
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+
+            {/* Mobile */}
+            <div className={styles.mobile_records}>
               {filteredRecords.map((record: RecordItem) => (
-                <tr
+                <div
                   key={record.id}
+                  className={styles.application_card}
                   onClick={() => navigate(`/applications/${record.id}`)}
-                  className={styles.clickable_row}
                 >
-                  <td className={styles.role_cell}>
-                    <span className={styles.target_icon}>
-                      {" "}
-                      <Target />
-                    </span>
-                    <span className={styles.role_title}>{record.role}</span>
-                  </td>
-                  <td>{record.company}</td>
-                  <td>{record.dateApplied || "N/A"}</td>
-                  <td>
+                  <div className={styles.card_main}>
+                    <div className={styles.card_role}>
+                      <span className={styles.target_icon}>
+                        <Target />
+                      </span>
+
+                      <div>
+                        <strong>{record.role}</strong>
+                        <span>{record.company}</span>
+                      </div>
+                    </div>
+
                     <span
                       className={`${styles.status_badge} ${
                         styles[record.status.toLowerCase()] ||
@@ -167,33 +232,39 @@ const HomePage = () => {
                     >
                       {record.status}
                     </span>
-                  </td>
-                  <td className={styles.actions_cell}>
-                    <button
-                      type="button"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        navigate(`/applications/${record.id}/edit`);
-                      }}
-                      className={styles.edit_btn}
-                    >
-                      <Edit />
-                    </button>
-                    <button
-                      type="button"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        deleteRecord(record.id);
-                      }}
-                      className={styles.delete_btn}
-                    >
-                      <Trash3 />
-                    </button>
-                  </td>
-                </tr>
+                  </div>
+
+                  <div className={styles.card_bottom}>
+                    <span>{record.dateApplied || "N/A"}</span>
+
+                    <div className={styles.actions_cell}>
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          navigate(`/applications/${record.id}/edit`);
+                        }}
+                        className={styles.edit_btn}
+                      >
+                        <Edit />
+                      </button>
+
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          deleteRecord(record.id);
+                        }}
+                        className={styles.delete_btn}
+                      >
+                        <Trash3 />
+                      </button>
+                    </div>
+                  </div>
+                </div>
               ))}
-            </tbody>
-          </table>
+            </div>
+          </>
         )}
       </div>
     </div>
