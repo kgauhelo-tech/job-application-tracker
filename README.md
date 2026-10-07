@@ -23,5 +23,8 @@ A job tracker application that stores a user's application records.
 
 ### Planning the application
 
+- Project live link: track-it-better.netlify.app
+
 - Pseudo code: https://github.com/kgauhelo-tech/job-application-tracker/tree/pseudocode
+
 - Figma Design Link: https://www.figma.com/design/OxRmsqgqXd8eeYTTogsnn0/Chess-Trainer?node-id=206-923&t=c3Bn6FxUHf7L70OF-1
